@@ -36,8 +36,9 @@
 use std::{
     collections::HashMap,
     fs::File,
-    io::{self, BufWriter, Write},
+    io::{self, BufReader, BufWriter, Write},
     path::{Path, PathBuf},
+    ptr::read,
 };
 
 use thiserror::Error;
@@ -89,6 +90,110 @@ pub fn save(path: &Path, map: Map) -> Result<(), MyError> {
     Ok(())
 }
 
-pub fn load(path: &Path, map: Map) -> Result<Map, MyError> {
+pub fn load(path: &Path) -> Result<Map, MyError> {
+    let path = path.to_path_buf();
+    let file = match File::open(&path) {
+        Ok(file) => file,
+        Err(error) if error.kind() == io::ErrorKind::NotFound => return Ok(Map::new()),
+        Err(error) => {
+            return Err(MyError::Io {
+                path,
+                source: error,
+            })
+        }
+    };
+
+    let reader = BufReader::new(file);
+
+    let map = serde_json::from_reader(reader).map_err(|e| MyError::Parse {
+        path: path.to_path_buf(),
+        source: e,
+    })?;
+
     Ok(map)
+}
+
+#[cfg(test)]
+mod mc2_tests {
+    use super::*;
+    use std::fs;
+    use std::path::PathBuf;
+
+    fn temp_path(name: &str) -> PathBuf {
+        let mut path = PathBuf::from("target");
+        path.push(format!("test_{}", name));
+        path
+    }
+
+    #[test]
+    fn round_trip_save_then_load_equals_original() {
+        let path = temp_path("round_trip.json");
+        let _ = fs::remove_file(&path); // Clean up if exists
+
+        let mut original = Map::new();
+        original.insert("key1".to_string(), "value1".to_string());
+        original.insert("key2".to_string(), "value2".to_string());
+        original.insert("foo".to_string(), "bar".to_string());
+
+        // Save the map
+        save(&path, original.clone()).expect("save should succeed");
+
+        // Load it back
+        let loaded = load(&path).expect("load should succeed");
+
+        // Assert equivalence (not JSON string ordering)
+        assert_eq!(loaded, original);
+
+        // Cleanup
+        let _ = fs::remove_file(&path);
+    }
+
+    #[test]
+    fn load_nonexistent_file_returns_empty_map() {
+        let path = temp_path("nonexistent.json");
+        let _ = fs::remove_file(&path); // Ensure it doesn't exist
+
+        let result = load(&path).expect("load should succeed for missing file");
+
+        assert_eq!(result, Map::new());
+        assert!(result.is_empty());
+    }
+
+    #[test]
+    fn load_corrupt_json_returns_error() {
+        let path = temp_path("corrupt.json");
+
+        // Write invalid JSON
+        fs::write(&path, b"{ this is not valid json }").expect("write should succeed");
+
+        // Attempt to load
+        let result = load(&path);
+
+        assert!(result.is_err());
+        match result {
+            Err(MyError::Parse { path: _, source: _ }) => {
+                // Expected error type
+            }
+            _ => panic!("Expected MyError::Parse, got {:?}", result),
+        }
+
+        // Cleanup
+        let _ = fs::remove_file(&path);
+    }
+
+    #[test]
+    fn round_trip_with_empty_map() {
+        let path = temp_path("empty.json");
+        let _ = fs::remove_file(&path);
+
+        let original = Map::new();
+
+        save(&path, original.clone()).expect("save should succeed");
+        let loaded = load(&path).expect("load should succeed");
+
+        assert_eq!(loaded, original);
+        assert!(loaded.is_empty());
+
+        let _ = fs::remove_file(&path);
+    }
 }
