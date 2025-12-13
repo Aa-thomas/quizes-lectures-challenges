@@ -1,0 +1,9 @@
+/home/aaron/Documents/code/main-projects/quizes-lectures-challenges/kvstore_challenges/preproject/day_1/mc3_repl_parse/target/debug/deps/mc3_repl_parse-7ef63b0ae766aaaf.d: src/lib.rs Cargo.toml
+
+/home/aaron/Documents/code/main-projects/quizes-lectures-challenges/kvstore_challenges/preproject/day_1/mc3_repl_parse/target/debug/deps/libmc3_repl_parse-7ef63b0ae766aaaf.rmeta: src/lib.rs Cargo.toml
+
+src/lib.rs:
+Cargo.toml:
+
+# env-dep:CLIPPY_ARGS=
+# env-dep:CLIPPY_CONF_DIR
