@@ -1,0 +1,12 @@
+/home/aaron/Documents/code/main-projects/quizes-lectures-challenges/kvstore_challenges/preproject/day_2/mc2_1_errors/target/debug/deps/serde-8ec5695df2f79189.d: /home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/aaron/Documents/code/main-projects/quizes-lectures-challenges/kvstore_challenges/preproject/day_2/mc2_1_errors/target/debug/build/serde-8a0c229edf9b15e7/out/private.rs
+
+/home/aaron/Documents/code/main-projects/quizes-lectures-challenges/kvstore_challenges/preproject/day_2/mc2_1_errors/target/debug/deps/libserde-8ec5695df2f79189.rmeta: /home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/aaron/Documents/code/main-projects/quizes-lectures-challenges/kvstore_challenges/preproject/day_2/mc2_1_errors/target/debug/build/serde-8a0c229edf9b15e7/out/private.rs
+
+/home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs:
+/home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs:
+/home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs:
+/home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs:
+/home/aaron/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs:
+/home/aaron/Documents/code/main-projects/quizes-lectures-challenges/kvstore_challenges/preproject/day_2/mc2_1_errors/target/debug/build/serde-8a0c229edf9b15e7/out/private.rs:
+
+# env-dep:OUT_DIR=/home/aaron/Documents/code/main-projects/quizes-lectures-challenges/kvstore_challenges/preproject/day_2/mc2_1_errors/target/debug/build/serde-8a0c229edf9b15e7/out
